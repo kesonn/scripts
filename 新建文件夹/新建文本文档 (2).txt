@@ -1,0 +1,2 @@
+{"statusInterval":20,"eventClassError":10,"collectKeepDays":7,"eventClassInfo":4,"eventClassWarning":7,"eventClassGeneral":5,"eventCloseType":["\u786c\u4ef6\u6545\u969c","\u5e94\u7528","\u7ef4\u62a4"],"mailServer":{"mailhost":"11.201.0.95","user":"gongbing03","password":"GONGbing1989","mailfrom":"gongbing03@picc.com.cn","title":"\u76d1\u63a7\u544a\u8b66","format":"\uff08\u544a\u8b66id\uff1a{EventID}\uff09{ObjectID}\u5728{Time}\u53d1\u751f{ShortMsg}"}}
+

@@ -1,0 +1,11 @@
+腾讯识别12306验证码
+
+POST /api/get_code HTTP/1.1
+Host: 12306.qq.com
+Content-Length: 23743
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.104 Safari/537.36 Core/1.53.2039.400 QQBrowser/9.5.10102.400
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+
+method=upload&ts=1483496669889&guid=5defd8fef91599c627485430d0c5e729&file=验证码图片base64后UrlEncode&code_type=

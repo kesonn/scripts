@@ -1,0 +1,140 @@
+ï»¿#coding:utf-8
+import os
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+import xlwt
+
+#os.getdefaultcoding
+#±äÁ¿Çø
+dir = ""
+file_num = 0
+'''
+ext_which_for_count = ('.h','.vb','.sh','.cs','.cpp','.sql',
+	'inc','.rc','.java','.cls','.htm','.c','.tli','.php','.asp','.hh',
+	'.txt','.aspx','.jsp','.cc','.php3','.ctl','.pas','.tlh',
+	'.frm','.hpp','.html','.properties','.cxx')
+'''
+ext_no_cout = ('.rar','.zip','.7z')
+
+file_which_for_count = []
+
+all_file_line_num = 0
+
+file_num = 0
+
+#file_size = 0
+
+all_file_size = 0
+
+
+#Í³¼Æº¯Êı
+def file_conuting(file):
+	global all_file_line_num
+	global file_num
+	global all_file_size
+	
+	file_size = 0
+	file_size = os.path.getsize(file)
+	#print 'ÎÄ¼şµÄ´óĞ¡ÊÇ{0}'.format(file_size)
+	all_file_size = all_file_size + file_size
+	
+	
+	file_num = file_num+1
+	#print 'µ±Ç°Í³¼ÆµÄÎÄ¼şÊÇ:'+file
+	file_line_num = 0
+	with open(file) as f:
+		for line in f.readlines():
+			if line.strip() != '':
+				file_line_num = file_line_num+1
+	#print 'µ±Ç°Í³¼ÆµÄÎÄ¼şĞĞÊıÊÇ(³ıÈ¥¿ÕĞĞ):'+str(file_line_num)
+	all_file_line_num = all_file_line_num+file_line_num
+
+#µÃµ½µ±Ç°Â·¾¶
+pwd = os.getcwd()
+print "µ±Ç°Â·¾¶Îª:{0}".format(pwd)
+#µ±Ç°Ä¿Â¼ÎÄ¼ş¼Ğ
+num = 1
+print 'µ±Ç°Ä¿Â¼ÏÂµÄÎÄ¼ş:'
+for dir in os.listdir(pwd):
+	print '[*]'+dir
+print '+++++++++++++++++++++++++++'
+#±éÀúÎÄ¼ş
+
+for parent,dirnames,filenames in os.walk(pwd):
+	for filename in filenames:
+		#print '-----------------------'
+		#print '¸¸Ä¿Â¼ÊÇ:'+parent
+		#print 'ÎÄ¼şÃûÊÇ:'+filename
+		
+		if filename.endswith(ext_no_cout):
+			print 'Ñ¹ËõÎÄ¼ş:'+filename
+			continue
+		file_which_for_count.append(os.path.join(parent,filename))
+		#print 'ÒªÍ³¼ÆµÄÎÄ¼ş:'+str(file_which_for_count)
+		
+		
+		#print 'ÎÄ¼şµÄÈ«Â·¾¶ÊÇ:'+os.path.join(parent,filename)
+		#print '-----------------------'
+'''
+#ÒªÍ³¼ÆµÄÎÄ¼ş
+jsp = 0
+htm = 0
+properties = 0
+html = 0
+txt = 0
+for file in  file_which_for_count:
+
+	
+	if file.endswith('.jsp'):
+		jsp = jsp+1
+		
+	if file.endswith('.htm'):
+		htm = htm+1
+	if file.endswith('.html'):
+		html = html+1
+		
+print 'jsp:'+str(jsp)
+print 'htm:'+str(htm)
+'''
+
+	
+	
+#ÒªÍ³¼ÆµÄÎÄ¼ş
+for file in  file_which_for_count:
+	#print '==================================='
+	#print file
+	file_conuting(file)
+	
+
+print '#################################'
+print 'Í³¼Æ½á¹û:'
+print '[*]´úÂëÁ¿(´úÂë×ÜĞĞÊı¡¾³ıÈ¥¿ÕĞĞ¡¿):'+str(all_file_line_num)
+print '[*]ÎÄ¼şÊı:'+str(file_num)
+r_num = all_file_size
+print '[*]ÎÄ¼ş´óĞ¡:'+str(r_num)+'Bytes'
+r_num_k = all_file_size/1024.0
+print '[*]ÎÄ¼ş´óĞ¡KB:'+str(r_num_k)
+r_num_m = r_num_k/1024.0
+print '[*]ÎÄ¼ş´óĞ¡MB:'+str(r_num_m)
+r_num_g = r_num_m/1024.0
+print  '[*]ÎÄ¼ş´óĞ¡GB:'+str(r_num_g)
+'''
+xls=xlwt.Workbook()
+xls.tab_width=4
+sheet = xls.add_sheet("Sheet1")
+sheet.write(0,0,u'ÏµÍ³Ãû³Æ')
+sheet.write(0,0,u'´úÂëÁ¿(´úÂë×ÜĞĞÊı¡¾³ıÈ¥¿ÕĞĞ¡¿)')
+
+xls.save('out.xls')
+'''
+
+os.system('pause')
+
+
+
+	
+	
+
+			
+

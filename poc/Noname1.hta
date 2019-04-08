@@ -1,0 +1,52 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SpringBoot-EL注入检测</title>
+地址:&nbsp;<input type="text" id="url" size=100><button id='test'>测试</button><br><br><div id="result"></div>
+<script>
+function $(id){return document.getElementById(id);}
+function encodeFormData(data){
+    if(!data) return null;
+    var pairs = [];
+    for(var name in data){
+        if(!data.hasOwnProperty(name)) continue;
+        if(typeof data[name] === 'function') continue;
+        var value = data[name].toString();
+        name = encodeURIComponent(name.replace('%20','+'));
+        value = encodeURIComponent(value.replace('%20','+'));
+        pairs.push(name+'='+value);
+    }
+    return pairs.join('&');
+}
+function $ajax(url,data,headers){
+    if (window.XMLHttpRequest){
+        var xhr = new XMLHttpRequest();
+    } else if (window.ActiveXObject){
+        var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    } else {
+        return null;
+    }
+    var method = data ? 'POST':'GET'
+alert(method)
+xhr.open('GET',url,true);
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+xhr.withCredentials = true;//跨域
+for (var key in headers){if (key.toUpperCase()=='COOKIE'){document.cookie=headers[key];}else{xhr.setRequestHeader(key,headers[key]);}}xhr.send(encodeFormData(data));return xhr}
+$("test").onclick = function(){
+	var result = '没有漏洞'
+	var url=$('url').value;
+	var urls=url.split('?');
+	var host=urls[0];
+	if(urls.length>=2){
+		var args=urls[1].split('&');
+		for (var i in args){
+			alert(i+args[i]);
+		}
+	}
+	$('result').innerHTML = result;
+	var ajax = $ajax($('url').value,null,null)
+	ajax.onreadystatechange=function(){
+	    if(ajax.readyState == 4){
+		$('result').innerHTML = ajax.responseText;
+	    }	
+	}
+}	
+</script>
